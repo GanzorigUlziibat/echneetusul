@@ -25,7 +25,7 @@ const Listings = ({ listings }: Props) => {
           <View style={styles.bookmark}>
             <Ionicons name="bookmark-outline" size={20} color={Colors.white} />
           </View>
-          <Text style={item.name}></Text>
+          <Text style={styles.itemTxt}>{item.name}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -69,4 +69,5 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.white,
   },
+  itemTxt: {},
 });
