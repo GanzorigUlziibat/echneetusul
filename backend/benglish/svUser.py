@@ -174,6 +174,33 @@ def dt_getsubcatdata(request):
     resp = sendResponse(action, 200, respData)
     return resp
 
+def dt_getdata(request):
+    jsons = json.loads(request.body)
+    action = jsons['action']
+    
+    myConn = connectDB()
+    cursor = myConn.cursor()
+    query = f"""SELECT * FROM t_category"""
+    cursor.execute(query)
+    columns = cursor.description
+    # print(columns)
+    respData = [{columns[index][0]:column for index , column in enumerate(value) } for value in cursor.fetchall()]
+    print (respData)
+    for cat in respData:
+        print(cat["cid"])
+        cid = cat["cid"]
+        query = f"""SELECT * FROM t_subcategory WHERE cid = {cid}"""
+        cursor.execute(query)
+        columns = cursor.description
+        # print(columns)
+        respRow = [{columns[index][0]:column for index , column in enumerate(value) } for value in cursor.fetchall()]
+        cat["subcat"] = respRow
+        cat["bagts"] = len(respRow)
+    
+    resp = sendResponse(action, 1006, respData)
+    
+    return resp
+
 @csrf_exempt
 def checkService(request):
     if request.method == "POST":
@@ -208,6 +235,9 @@ def checkService(request):
             return (JsonResponse(result))
         elif(action == 'getsubcatdata'):
             result = dt_getsubcatdata(request)
+            return (JsonResponse(result))
+        elif(action == 'getdata'):
+            result = dt_getdata(request)
             return (JsonResponse(result))
        
         else:
