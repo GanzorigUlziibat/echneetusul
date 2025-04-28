@@ -3,20 +3,29 @@ import {
   StyleSheet,
   View,
   Text,
+  TextInput,
   TouchableOpacity,
   RefreshControlBase,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Stack } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
 import { jsiConfigureProps } from "react-native-reanimated/lib/typescript/core";
 import { useHeaderHeight } from "@react-navigation/elements";
-import { TextInput } from "react-native-gesture-handler";
 import CategoryButtons from "@/components/CategoryButtons";
+import category from "./category";
+import Listings from "@/components/Listings";
+import lostingData from "@/data/destinations.json";
 
 const Page = () => {
   const headerHeight = useHeaderHeight();
+  const [category, setCategory] = useState("All");
+
+  const onCatChanged = (category: string) => {
+    console.log("Category:", category);
+    setCategory(category);
+  };
 
   return (
     <>
@@ -75,7 +84,9 @@ const Page = () => {
           </TouchableOpacity>
         </View>
 
-        <CategoryButtons />
+        <CategoryButtons onCategoryChanged={onCatChanged} />
+
+        <listings />
       </View>
     </>
   );

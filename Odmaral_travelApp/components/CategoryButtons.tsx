@@ -10,19 +10,33 @@ import Colors from "@/constants/Colors";
 import { ScrollView } from "react-native-gesture-handler";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import destinationCategories from "@/data/categories";
+import Animated from "react-native-reanimated";
 
-const CategoryButtons = () => {
+type Props = {
+  onCategoryChanged: (category: string) => void;
+};
+const CategoryButtons = ({ onCategoryChanged }: Props) => {
+  const scrollRef = useRef()<ScrollView>(null);
   const itemRef = useRef<TouchableOpacity[] | null[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+
   const handlerSelectCategory = (index: number) => {
+    const selected = itemRef.current[index];
+
     setActiveIndex(index);
-    console.log(index);
+
+    selected?.measure((x) => {
+      scrollRef.current.scrollTo({ x: x, y: 0, animated: true });
+    });
+
+    onCategoryChanged(destinationCategories[index].title);
   };
 
   return (
     <View>
       <Text style={styles.title}>Categories</Text>
       <ScrollView
+        ref={scrollRef()}
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
