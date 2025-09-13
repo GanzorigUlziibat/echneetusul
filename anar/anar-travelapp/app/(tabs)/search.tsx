@@ -4,7 +4,7 @@ import React from 'react';
 const Page = () => {
   return (
     <view style={styles.container}>
-      <text>Page</text>
+      <text>Search</text>
     </view>
   )
 }
