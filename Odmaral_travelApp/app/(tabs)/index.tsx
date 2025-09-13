@@ -3,20 +3,29 @@ import {
   StyleSheet,
   View,
   Text,
+  TextInput,
   TouchableOpacity,
-  RefreshControlBase,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Stack } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
-import { jsiConfigureProps } from "react-native-reanimated/lib/typescript/core";
 import { useHeaderHeight } from "@react-navigation/elements";
-import { TextInput } from "react-native-gesture-handler";
 import CategoryButtons from "@/components/CategoryButtons";
+import Listings from "@/components/Listings";
+import listingData from "@/data/destinations.json";
+import GroupListings from "@/components/GroupListings";
+import groupData from "@/data/groups.json";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Page = () => {
   const headerHeight = useHeaderHeight();
+  const [category, setCategory] = useState("All");
+
+  const onCatChanged = (category: string) => {
+    console.log("Category:", category);
+    setCategory(category);
+  };
 
   return (
     <>
@@ -57,25 +66,32 @@ const Page = () => {
           ),
         }}
       />
+
       <View style={[styles.container, { paddingTop: headerHeight }]}>
-        <Text style={styles.headingTxt}>Explore The Beautiful World!</Text>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Text style={styles.headingTxt}>Explore The Beautiful World!</Text>
 
-        <View style={styles.searchSectionWrapper}>
-          <View style={styles.searchBar}>
-            <Ionicons
-              name="search"
-              size={18}
-              style={{ marginRight: 5 }}
-              color={Colors.black}
-            />
-            <TextInput placeholder="Search..." />
+          <View style={styles.searchSectionWrapper}>
+            <View style={styles.searchBar}>
+              <Ionicons
+                name="search"
+                size={18}
+                style={{ marginRight: 5 }}
+                color={Colors.black}
+              />
+              <TextInput placeholder="Search..." />
+            </View>
+            <TouchableOpacity onPress={() => {}} style={styles.filterBtn}>
+              <Ionicons name="options" size={28} color={Colors.white} />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={() => {}} style={styles.filterBtn}>
-            <Ionicons name="options" size={28} color={Colors.white} />
-          </TouchableOpacity>
-        </View>
 
-        <CategoryButtons />
+          <CategoryButtons onCategoryChanged={onCatChanged} />
+
+          <Listings listings={listingData} category={category} />
+
+          <GroupListings listings={groupData} />
+        </ScrollView>
       </View>
     </>
   );

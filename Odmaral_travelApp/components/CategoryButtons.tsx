@@ -1,28 +1,37 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  Touchable,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import React, { useRef, useState } from "react";
 import Colors from "@/constants/Colors";
 import { ScrollView } from "react-native-gesture-handler";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import destinationCategories from "@/data/categories";
+import Animated from "react-native-reanimated";
+import { TouchableOpacity } from "react-native";
 
-const CategoryButtons = () => {
-  const itemRef = useRef<TouchableOpacity[] | null[]>([]);
+type Props = {
+  onCategoryChanged: (category: string) => void;
+};
+const CategoryButtons = ({ onCategoryChanged }: Props) => {
+  const scrollRef = useRef<ScrollView>(null);
+  const itemRef = useRef<Array<View | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+
   const handlerSelectCategory = (index: number) => {
+    const selected = itemRef.current[index];
+
     setActiveIndex(index);
-    console.log(index);
+
+    selected?.measure((x) => {
+      scrollRef.current?.scrollTo({ x: x, y: 0, animated: true });
+    });
+
+    onCategoryChanged(destinationCategories[index].title);
   };
 
   return (
     <View>
       <Text style={styles.title}>Categories</Text>
       <ScrollView
+        ref={scrollRef}
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
@@ -34,7 +43,7 @@ const CategoryButtons = () => {
         {destinationCategories.map((item, index) => (
           <TouchableOpacity
             key={index}
-            ref={(el) => itemRef.current[index] == el}
+            ref={(el) => (itemRef.current[index] = el)}
             onPress={() => handlerSelectCategory(index)}
             style={
               activeIndex == index
