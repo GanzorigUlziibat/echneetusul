@@ -7,6 +7,9 @@ export default function Layout() {
     <Tabs>
       <Tabs.Screen name='index'/>
       <Tabs.Screen name='category'/>
+      <Tabs.Screen name='search'/>
+      <Tabs.Screen name='profile'/>
+      <Tabs.Screen name='bookmarks'/>
     </Tabs>
   )
 }
