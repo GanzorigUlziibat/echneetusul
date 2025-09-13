@@ -3,14 +3,14 @@ import React from 'react';
 
 const Page = () => {
   return (
-    <view style={styles.container}>
-      <text>Profile</text>
-    </view>
+    <View style={styles.container}>
+      <Text>Profile</Text>
+    </View>
   )
 }
 
 export default Page
-const styles = Stylesheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',

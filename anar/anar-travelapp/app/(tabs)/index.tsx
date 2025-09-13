@@ -1,16 +1,17 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
+
 const Page = () => {
   return (
-    <view style={styles.container}>
-      <text>Page</text>
-    </view>
+    <View style={styles.container}>
+      <Text>Page</Text>
+    </View>
   )
 }
 
 export default Page
-const styles = Stylesheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',

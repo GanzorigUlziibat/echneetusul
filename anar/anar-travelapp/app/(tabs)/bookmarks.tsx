@@ -3,8 +3,18 @@ import React from 'react';
 
 const Page = () => {
   return (
-    <view style={styles.container}>
-      <text>Bookmarks</text>
-    </view>
+    <View style={styles.container}>
+      <Text>Bookmarks</Text>
+    </View>
   )
 }
+
+export default Page
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  }
+})
