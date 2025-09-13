@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { fetchData, ResponseInterface } from "../../../utils/needful";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { Pressable } from "react-native-gesture-handler";
+
 import { Link, router } from "expo-router";
 
 const HomeScreen = () => {
