@@ -1,12 +1,25 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, Image, View } from 'react-native';
 import React from 'react';
+import { Stack } from 'expo-router';
+
 
 
 const Page = () => {
   return (
-    <View style={styles.container}>
-      <Text>Page</Text>
-    </View>
+    <Stack.Screen options={{
+      headerTransparent: true,
+      headerTitle: "",
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => {}}>
+          <Image 
+            source={{
+              uri: "https://reactnative.dev/img/tiny_logo.png"
+            }}
+            style={{width:40, height: 40, borderRadius:10}}
+          />
+        </TouchableOpacity>
+      ),
+    }} />
   )
 }
 
