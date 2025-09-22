@@ -6,6 +6,9 @@ import {useHeaderHeight} from '@react-navigation/elements'
 import Colors from "@/constants/Colors";
 import { TextInput } from 'react-native';
 import CategoryButton from '@/components/CategoryButtons';
+import {useState} from "react";
+import Listings from '@/components/Listings';
+import ListingData from '@/data/destinations.json';
 
 
 
@@ -14,6 +17,12 @@ import CategoryButton from '@/components/CategoryButtons';
 
 const Page = () => {
   const headerHeight = useHeaderHeight();
+  const [category, setCategory] = useState('All');
+  const onCatChanged = (category: string) => {
+    console.log("Category: ", category);  
+    setCategory(category);
+  }
+
   return ( 
     <>
     <Stack.Screen options={{
@@ -55,9 +64,9 @@ const Page = () => {
         <TouchableOpacity onPress={() => {}} style={styles.filterBtn}>
           <Ionicons name="options" size={28} color={Colors.white}/>
         </TouchableOpacity>
-      <CategoryButton/>
+      <CategoryButton onCagtegoryChanged={onCatChanged}/>
 
-
+      <Listings listings={listingData}/>
       </View>
     </>
   )
