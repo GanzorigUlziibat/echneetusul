@@ -15,4 +15,4 @@ export default function Layout() {
       <Tabs.Screen name='profile'/>
     </Tabs>
   )
-}
+} mn m9
