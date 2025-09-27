@@ -1,11 +1,13 @@
+import styles from "./page.module.css";
+import Header from "@/components/Header";
 export default function About() {
   return (
-    <div className="p-8">
-      ​<h1 className="text-3xl font-bold text-blue-600">Миний тухай</h1>​
-      <p className="mt-4 text-gray-700">
-        ​ Би Next.js ашиглаж веб хөгжүүлэлт сурч байна.​
+    <div>
+      <Header />​<h1 className={styles.title}>Миний тухай</h1>​
+      <p className={styles.description}>
+        ​ Энэ хуудсыг CSS Module ашиглаж загварчилсан.​
       </p>
-      ​<p className="mt-2">Миний хобби: унших, аялах, программчлал.</p>​
+      ​
     </div>
   );
 }
