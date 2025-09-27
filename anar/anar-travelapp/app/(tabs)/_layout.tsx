@@ -1,35 +1,48 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { View, Text } from 'react-native'
+import React from 'react'
+import {Tabs} from 'expo-router'
+import {FontAwesome, Ionicons, MaterialIcons} from '@expo/vector-icons'
+import Colors from "@/constants/Colors";
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function Layout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+    <Tabs screenOptions={{
+      tabBarStyle: {
+        backgroundColor: Colors.bgColor,
+        borderTopWidth: 0,
+        padding: 0
+      },
+      tabBarShowLabel: false,
+      tabBarActiveTintColor: Colors.black,
+      tabBarInactiveBackgroundColor: '#999'
+    }}>
+      <Tabs.Screen name='index' options={{tabBarIcon: ({color}) =>(
+        <Ionicons name="compass" size={28} color={color} />
+        )
+      }}/>
+       <Tabs.Screen name='category' options= {{ tabBarIcon: ({color}) =>(
+        <MaterialIcons name="space-dashboard" size={28} color={color}/>
+      )  
+      }}/>
+        <Tabs.Screen name='search' options= {{tabBarIcon: ({color}) =>(
+          <View style={{
+            backgroundColor: Colors.primaryColor, 
+            paddingHorizontal: 16, 
+            paddingVertical: 12, 
+            borderRadius: 10, 
+            height: 50, 
+            }}>
+            <Ionicons name="search-outline" size={24} color={Colors.white}/>
+          </View>
+        ),  
+      }}
+        />
+         <Tabs.Screen name='bookmarks'options= {{tabBarIcon: ({color}) =>(
+        <Ionicons name="bookmark" size={28} color={color}/>
+        )}}/>
+          <Tabs.Screen name='profile' options= {{tabBarIcon: ({color}) =>(
+        <FontAwesome name="user" size={28} color={color}/>
+        )}}/>
     </Tabs>
-  );
+  )
 }

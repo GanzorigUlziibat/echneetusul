@@ -7,3 +7,5 @@ const destinationCategories = [
   { title: "Элсэн манхан", iconName: "cactus" },
   { title: "Хүрхрээ", iconName: "waterfall" },
 ];
+
+export default destinationCategories;
