@@ -114,6 +114,7 @@ const ListingDetails = () => {
               </View>
               <View style={{ flexDirection: "row" }}>
                 <View style={styles.highlightIcon}>
+                  http://localhost:8081/listing/2
                   <Ionicons name="star" size={18} color={Colors.primaryColor} />
                 </View>
                 <View>
