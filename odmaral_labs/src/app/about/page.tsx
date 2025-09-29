@@ -1,13 +1,16 @@
 import React from "react";
 import styles from "./page.module.css";
 
+import Header from "@/component/header";
+
 export default function About() {
   return (
-    <div>
-      <h1 className={styles.title}>Миний тухай</h1>
-      <p className={styles.description}>
-        Энэ хуудсыг CSS Module ашиглаж загварчилсан.
-      </p>
-    </div>
+    <>
+      <Header />
+      <main className="p-6">
+        <h2 className="text-2xl font-bold">Миний тухай</h2>
+        <p>Next.js ашиглаж байна.</p>
+      </main>
+    </>
   );
 }
