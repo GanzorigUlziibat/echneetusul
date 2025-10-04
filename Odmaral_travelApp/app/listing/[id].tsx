@@ -131,7 +131,7 @@ const ListingDetails = () => {
       <View style={styles.footer}>
         <TouchableOpacity
           onPress={() => {}}
-          style={[styles.footerBtn, , styles.footerBookBtn]}
+          style={[styles.footerBtn, styles.footerBookBtn]}
         >
           <Text style={styles.footerBtnTxt}>Book Now</Text>
         </TouchableOpacity>
