@@ -1,7 +1,18 @@
-export default function Footer() {
+import React from "react";
+
+// Define the props interface
+interface FooterProps {
+  year: number;
+}
+
+const Footer: React.FC<FooterProps> = ({ year }) => {
   return (
-    <footer className="bg-gray-800 text-white p-4 text-center mt-10">
-      <p>&copy; 2025 Миний вэб. Бүх эрх хуулиар хамгаалагдсан.</p>
+    <footer
+      style={{ background: "#f1f1f1", padding: "1rem", textAlign: "center" }}
+    >
+      <p>© {year} My Site. All rights reserved.</p>
     </footer>
   );
-}
+};
+
+export default Footer;
