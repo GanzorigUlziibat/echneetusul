@@ -1,6 +1,41 @@
-// src/data/photos.ts
-export const photos = [
-  { id: "mountain", src: "/images/image1.jpg", desc: "Beautiful mountain" },
-  { id: "city", src: "/images/image2.jpg", desc: "Busy city life" },
-  { id: "nature", src: "/images/image3.jpg", desc: "Peaceful nature" },
+export interface Photo {
+  id: number;
+  src: string;
+  alt: string;
+  title: string;
+  description: string;
+  detailedDescription: string;
+}
+
+export const photos: Photo[] = [
+  {
+    id: 1,
+    src: "https://source.unsplash.com/random/800x600/?travel,mountain",
+    alt: "Гайхалтай уулын ландшафт аялал",
+    title: "Уулын аялалын үзэсгэлэнт байгаль",
+    description:
+      "Монголын ууланд аялсан үеийн зураг, байгалийн үзэсгэлэнг харуулсан.",
+    detailedDescription:
+      "Энэ зураг нь Монголын Хөвсгөл нуурын ойролцоох ууланд аялсан үеийнх. Байгалийн цэвэр агаар, өндөр уулс, ногоон ой модыг харуулж байна. Аялалын турш явган аялал хийж, олон сонирхолтой газруудыг үзсэн.",
+  },
+  {
+    id: 2,
+    src: "https://source.unsplash.com/random/800x600/?travel,beach",
+    alt: "Далайн эрэг дээрх амралт аялал",
+    title: "Далайн эргийн аялалын амралт",
+    description:
+      "Далайн эрэг дээр амарч буй зураг, тайван байдлыг илэрхийлсэн.",
+    detailedDescription:
+      "Энэ нь Тайландын далайн эрэг дээр авсан зураг. Цагаан элс, цэнхэр ус, нарны туяа – төгс амралтын газар. Аялалын үеэр усанд шумбаж, орон нутгийн хоол идсэн.",
+  },
+  {
+    id: 3,
+    src: "https://source.unsplash.com/random/800x600/?travel,city",
+    alt: "Хотын аялалын үзэсгэлэнт гудамж",
+    title: "Хотын аялалын соёлын туршлага",
+    description:
+      "Хотын гудамжинд алхаж буй зураг, соёлын элементүүдийг харуулсан.",
+    detailedDescription:
+      "Японы Токио хотод авсан зураг. Неон гэрэл, олон хүн, орчин үеийн архитектур. Аялалын турш музей үзэж, орон нутгийн хоол амталсан.",
+  },
 ];
