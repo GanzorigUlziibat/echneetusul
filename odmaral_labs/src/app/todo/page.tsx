@@ -50,6 +50,12 @@ export default function TodoPage() {
       setDue(""); // due date цэвэрлэх
     }
   };
+  // Enter товчоор todo нэмэх
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      addTodo();
+    }
+  };
 
   // -------------------------------
   // ❌ Todo устгах функц
@@ -65,6 +71,13 @@ export default function TodoPage() {
     const updated = [...todos];
     updated[index].done = !updated[index].done;
     setTodos(updated);
+  };
+  // Хугацаа хэтэрсэн эсэхийг шалгах
+  const isOverdue = (due: string) => {
+    if (due === "No due date") return false;
+    const today = new Date();
+    const dueDate = new Date(due);
+    return dueDate < today;
   };
 
   // -------------------------------
@@ -147,10 +160,24 @@ export default function TodoPage() {
                 onChange={() => toggleTodo(index)}
                 className="mr-2"
               />
-              <span className={todo.done ? "line-through text-gray-500" : ""}>
+              <span
+                className={`${todo.done ? "line-through text-gray-500" : ""}${
+                  isOverdue(todo.due) && !todo.done
+                    ? "text-red-500 font-semibold"
+                    : ""
+                }`}
+              >
                 {todo.text}
               </span>
-              <div className="text-sm text-gray-500">📅 {todo.due}</div>
+              <div
+                className={`text-sm${
+                  isOverdue(todo.due) && !todo.done
+                    ? "text-red-500"
+                    : "text-gray-500"
+                }`}
+              >
+                📅 {todo.due}
+              </div>
             </div>
             <button
               onClick={() => removeTodo(index)}
