@@ -1,6 +1,8 @@
 "use client"
-import Link from "next/link";
+
 import {blogs} from "@/data/blog";
+import Image from "next/image";
+import Link from "next/link";
 
 
 export default function BlogPage(){
@@ -13,6 +15,7 @@ export default function BlogPage(){
                         <h2 className="text-xl font-semibold">{blog.blogname}</h2>
                         <p className="text-gray-600">{blog.description}</p>
                         <Link href={`/blog/${blog.id}`}>Read more</Link>
+                        <p>Hi</p>
 
                     </li>
                 )
