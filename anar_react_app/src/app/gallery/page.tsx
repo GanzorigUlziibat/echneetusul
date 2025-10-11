@@ -1,13 +1,17 @@
-import public from "@/app";
+import Link from "next/link";
+import Image from "next/image";
+import { photos } from "@/data/photos";
 
 export default function GalleryPage() {
   return (
     <div style={{ padding: "20px" }}>
-      <h1>My Gallery</h1>
+      <h1>Gallery</h1>
       <div style={{ display: "flex", gap: "20px" }}>
-        <Image src="file.svg" alt="" width={300} height={200}/>
-        <Image src="globe.svg" alt="" width={300} height={200} />
-        <Image src="next" alt="" width={300} height={200} />
+        {photos.map((p) => (
+          <Link key={p.id} href={`/gallery/${p.id}`}>
+            <Image src={p.src} alt={p.desc} width={300} height={200} />
+          </Link>
+        ))}
       </div>
     </div>
   );
