@@ -1,16 +1,9 @@
 import React from "react";
-import styles from "./page.module.css";
-
-import Header from "@/component/header";
-
-export default function About() {
+export default function AboutPage() {
   return (
-    <>
-      <Header />
-      <main className="p-6">
-        <h2 className="text-2xl font-bold">Миний тухай</h2>
-        <p>Next.js ашиглаж байна.</p>
-      </main>
-    </>
+    <div>
+      <h1>About Us</h1>
+      <p>Энэ бол манай тухай мэдээлэл.</p>
+    </div>
   );
 }

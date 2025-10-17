@@ -52,6 +52,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
+import { BrowserRouter } from "react-router-dom";
+import { StrictMode } from "react";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -83,6 +86,20 @@ export default function RootLayout({
         <div className="flex-1">
           <header className="bg-gray-800 text-white p-4">Header</header>
           <main className="p-6">{children}</main>
+          <Image
+            src="/next.svg" 
+            alt="Beautiful Mountain"   
+            width={600}                
+            height={400}              
+            className="rounded-lg shadow-lg"
+          />
+          <Image
+            src="/globe.svg" 
+            alt="Beautiful Mountain"   
+            width={600}                
+            height={400}              
+            className="rounded-lg shadow-lg"
+          />
           <footer className="bg-gray-200 text-center p-4">Footer</footer>
         </div>
       </body>

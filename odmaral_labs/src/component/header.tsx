@@ -1,7 +1,16 @@
-export default function Header() {
+import React from "react";
+
+// Define the props interface
+interface HeaderProps {
+  siteName: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ siteName }) => {
   return (
-    <header className="p-4 bg-blue-600 text-white">
-      <h1 className="text-xl">Миний Вэб</h1>
+    <header style={{ background: "#333", color: "white", padding: "1rem" }}>
+      <h1>{siteName}</h1>
     </header>
   );
-}
+};
+
+export default Header;
