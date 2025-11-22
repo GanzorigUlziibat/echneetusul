@@ -29,7 +29,7 @@ const index = () => {
       <View style={styles.mainView}>
         <Link
           href={{
-            pathname: "/cat/index",
+            pathname: "/cat",
             // params: { id: "bacon" },
           }}
           style={styles.link}
@@ -38,7 +38,7 @@ const index = () => {
         </Link>
         <Link
           href={{
-            pathname: "/subcat/index",
+            pathname: "/subcat",
             params: { id: 1, sid: 101 },
           }}
           style={styles.link}
@@ -47,7 +47,7 @@ const index = () => {
         </Link>
         <Link
           href={{
-            pathname: "/item/index",
+            pathname: "/item",
             params: { id: 1, sid: 101, iid: 1011 },
           }}
           style={styles.link}
