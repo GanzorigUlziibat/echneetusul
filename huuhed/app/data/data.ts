@@ -7,44 +7,52 @@ export const data = [
       {
         sid: 101,
         sname: "Шувуу",
-        image: "https://example.com/images/bird_subcat.jpg",
+        image:
+          "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
         items: [
           {
             iid: 1011,
             iname: "Бүргэд",
-            image: "https://example.com/images/eagle.jpg",
+            image:
+              "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
           },
           {
             iid: 1012,
             iname: "Тагтаа",
-            image: "https://example.com/images/pigeon.jpg",
+            image:
+              "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
           },
           {
             iid: 1013,
             iname: "Оронго",
-            image: "https://example.com/images/owl.jpg",
+            image:
+              "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
           },
         ],
       },
       {
         sid: 102,
         sname: "Далайн амьтан",
-        image: "https://example.com/images/marine_subcat.jpg",
+        image:
+          "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
         items: [
           {
             iid: 1021,
             iname: "Халим",
-            image: "https://example.com/images/whale.jpg",
+            image:
+              "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
           },
           {
             iid: 1022,
             iname: "Далайн гахай",
-            image: "https://example.com/images/dolphin.jpg",
+            image:
+              "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
           },
           {
             iid: 1023,
             iname: "Аварга загас",
-            image: "https://example.com/images/shark.jpg",
+            image:
+              "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
           },
         ],
       },
@@ -58,44 +66,52 @@ export const data = [
       {
         sid: 201,
         sname: "Азийн далбаа",
-        image: "https://example.com/images/asia_flags_subcat.jpg",
+        image:
+          "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
         items: [
           {
             iid: 2011,
             iname: "Монгол",
-            image: "https://example.com/images/mongolia_flag.jpg",
+            image:
+              "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
           },
           {
             iid: 2012,
             iname: "Япон",
-            image: "https://example.com/images/japan_flag.jpg",
+            image:
+              "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
           },
           {
             iid: 2013,
             iname: "Солонгос",
-            image: "https://example.com/images/korea_flag.jpg",
+            image:
+              "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
           },
         ],
       },
       {
         sid: 202,
         sname: "Европын далбаа",
-        image: "https://example.com/images/europe_flags_subcat.jpg",
+        image:
+          "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
         items: [
           {
             iid: 2021,
             iname: "Герман",
-            image: "https://example.com/images/germany_flag.jpg",
+            image:
+              "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
           },
           {
             iid: 2022,
             iname: "Франц",
-            image: "https://example.com/images/france_flag.jpg",
+            image:
+              "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
           },
           {
             iid: 2023,
             iname: "Итали",
-            image: "https://example.com/images/italy_flag.jpg",
+            image:
+              "https://images.stockcake.com/public/6/9/4/694393d1-e889-4d05-a492-d08e8d79fa52/bird-splashing-water-stockcake.jpg",
           },
         ],
       },

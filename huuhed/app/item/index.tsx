@@ -9,7 +9,7 @@ const index = () => {
       <Text>ITEM</Text>
       <Text>id: {params.id}</Text>
       <Text>sid: {params.sid}</Text>
-      <Text>sid: {params.iid}</Text>
+      <Text>iid: {params.iid}</Text>
     </View>
   );
 };
