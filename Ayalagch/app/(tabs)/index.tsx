@@ -62,7 +62,7 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: { flex: 1, justifyContent: "center", alignItems: "center" },
   mainView: {
     flex: 1,
     margin: 10,
