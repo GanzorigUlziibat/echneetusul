@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
-import { sumDB, getSums } from "@/app/database/sum";
+import { sumDB, db } from "@/app/database/sum";
 
 export default function SumList() {
   const [sums, setSums] = useState<any[]>([]);
@@ -10,6 +10,10 @@ export default function SumList() {
     const rows = getSums(); // SQLite → бүх сумыг унших
     setSums(rows);
   }, []);
+
+  const getSums = () => {
+    return db.getAllSync("SELECT * FROM sum");
+  };
 
   return (
     <View style={{ padding: 20 }}>

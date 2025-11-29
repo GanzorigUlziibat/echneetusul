@@ -20,7 +20,3 @@ export const sumDB = () => {
       (4, 2, 'Буянт', 'https://mn.wikipedia.org/wiki/Буянт_сум', 0);
   `);
 };
-
-export const getSums = () => {
-  return db.getAllSync("SELECT * FROM sum");
-};

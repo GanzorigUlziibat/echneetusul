@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
-import { aimagDB, getAimags } from "@/app/database/aimag";
+import { aimagDB, db } from "@/app/database/aimag";
 
 export default function App() {
   const [aimags, setAimags] = useState<any[]>([]);
@@ -10,6 +10,10 @@ export default function App() {
     const rows = getAimags();
     setAimags(rows);
   }, []);
+
+  const getAimags = () => {
+    return db.getAllSync("SELECT * FROM aimag");
+  };
 
   return (
     <View style={{ padding: 20 }}>

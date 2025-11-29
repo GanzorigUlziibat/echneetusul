@@ -18,7 +18,3 @@ export const aimagDB = () => {
       (2, 'Баян-Өлгий', 'https://mn.wikipedia.org/wiki/Баян-Өлгий_аймаг', 0, 'bayanulgii.jpg');
   `);
 };
-
-export const getAimags = () => {
-  return db.getAllSync("SELECT * FROM aimag");
-};
