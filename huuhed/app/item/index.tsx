@@ -61,14 +61,14 @@ export default function ItemPage() {
             index,
           })}
           renderItem={({ item }) => (
-            <View style={[styles.page, { width: SCREEN_WIDTH }]}>
+            <Pressable style={[styles.page, { width: SCREEN_WIDTH }]}  onPress={() => router.back()}>
               <Text style={styles.title}>{item.iname}</Text>
               <Image
                 source={item.image}
                 style={styles.image}
                 resizeMode="cover"
               />
-            </View>
+            </Pressable>
           )}
         />
       </View>
