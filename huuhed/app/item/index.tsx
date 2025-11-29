@@ -1,49 +1,111 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  FlatList,
+  Dimensions,
+  Pressable,
+} from "react-native";
 import { useLocalSearchParams, router } from "expo-router";
-import { data } from "../data/data";
+import { data } from "@/app/data/data";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 export default function ItemPage() {
-  const params = useLocalSearchParams();
+  const { id, sid, iid } = useLocalSearchParams();
 
-  const catId = Number(params.id);
-  const subId = Number(params.sid);
-  const itemId = Number(params.iid);
+  const catId = Number(id);
+  const subId = Number(sid);
+  const itemId = Number(iid);
 
-  const ugugdul =
+  const sub =
     data
       .find(cat => cat.id === catId)
-      ?.subcategories.find(sub => sub.sid === subId)
-      ?.items.find(it => it.iid === itemId);
-  if (!ugugdul) {
-    return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Өгөгдөл олдсонгүй</Text>
-      </View>
-    );
-  }
+      ?.subcategories.find(s => s.sid === subId);
+
+  const items = sub?.items ?? [];
+
+  const initialIndex = Math.max(
+    items.findIndex((it) => it.iid === itemId),
+    0
+  );
+
+  if (!sub) return <Text>Өгөгдөл олдсонгүй</Text>;
 
   return (
-    <TouchableOpacity
-      onPress={() => router.back()}
-      style={{ flex: 1 }}
-      activeOpacity={1}
-    >
-      <View style={{ flex: 1, alignItems: "center", marginTop: 40 }}>
-        <Text style={{ fontSize: 26, fontWeight: "bold", marginBottom: 20 }}>
-          {ugugdul.iname}
-        </Text>
+    <SafeAreaView style={styles.container}>
 
-        <Image
-          source={{ uri: ugugdul.image }}
-          style={{
-            width: 260,
-            height: 260,
-            borderRadius: 12,
-            marginBottom: 20,
-          }}
+      {/* 🔵 ДЭЭД ХЭСЭГ (ТОВШ → BACK) */}
+      <Pressable
+        style={styles.topBackArea}
+        onPress={() => router.back()}
+      >
+        {/* Хоосон, харагдахгүй */}
+      </Pressable>
+
+      {/* 🔵 SWIPE БҮС */}
+      <View style={styles.swipeArea}>
+        <FlatList
+          data={items}
+          keyExtractor={(item) => String(item.iid)}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          initialScrollIndex={initialIndex}
+          getItemLayout={(_, index) => ({
+            length: SCREEN_WIDTH,
+            offset: SCREEN_WIDTH * index,
+            index,
+          })}
+          renderItem={({ item }) => (
+            <View style={[styles.page, { width: SCREEN_WIDTH }]}>
+              <Text style={styles.title}>{item.iname}</Text>
+              <Image
+                source={item.image}
+                style={styles.image}
+                resizeMode="cover"
+              />
+            </View>
+          )}
         />
       </View>
-    </TouchableOpacity>
+
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+
+  // 🔵 ДЭЭД ТАЛД ДАРВАЛ — BACK
+  topBackArea: {
+    height: 120,         // ← ДЭЭД ХЭСЭГ (өндөрийг хүсвэл нэм/хас)
+    width: "100%",
+  },
+
+  // 🔵 SWIPE бүс — дээд хэсэгт дарахад огт саад болохгүй
+  swipeArea: {
+    flex: 1,
+    justifyContent: "center",
+  },
+
+  page: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  title: {
+    fontSize: 26,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+
+  image: {
+    width: 260,
+    height: 260,
+    borderRadius: 20,
+  },
+});
