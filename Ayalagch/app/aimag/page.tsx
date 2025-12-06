@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Modal, Dimensions  } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Modal, Dimensions, Pressable  } from "react-native";
 import { aimagDB, db } from "@/app/database/aimag";
 import {Image} from "expo-image";
 import { WebView } from 'react-native-webview';
+import { useLocalSearchParams, Link,useRouter } from "expo-router";
 
 export default function App() {
+
+  const router = useRouter();
   const [aimags, setAimags] = useState<any[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
    const [aimagwiki, setAimagwiki] = useState("");
@@ -20,7 +23,7 @@ export default function App() {
 
 
   const getAimags = () => {
-    return db.getAllSync("SELECT * FROM aimag");
+    return db.getAllSync("SELECT * FROM aimag WHERE agone=1");
   };
 
       const handleOpenModal = (wiki, aname) => {
@@ -41,10 +44,12 @@ export default function App() {
         Аймгийн жагсаалт
       </Text>
 
+      <Pressable onPress = {()=>  router.navigate('/aimagochih/page')}>
+
        <Image style={{ width: '100%', aspectRatio: 2 }}
         source={ require('@/assets/zurag/gazriinzurag1050x510.png')}  
       />
-
+</Pressable>
       <FlatList
         data={aimags}
         keyExtractor={(item) => item.aid.toString()}

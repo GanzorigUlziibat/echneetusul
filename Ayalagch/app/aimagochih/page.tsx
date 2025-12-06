@@ -84,7 +84,7 @@ const loadChecked = () => {
   return (
     <View style={styles.container}>
 
-      <Pressable style={styles.saveIconButton} onPress={()=>{handleSave(); router.back()}}>
+      <Pressable style={styles.saveIconButton} onPress={()=>{handleSave();  router.replace('/aimag/page')}}>
 
         <Ionicons name="save" size={22} color="#fff" />
       </Pressable>
