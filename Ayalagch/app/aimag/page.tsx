@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Modal, Dimensions, Pressable  } from "react-native";
 import { aimagDB, db } from "@/app/database/aimag";
+import { aimagImages } from "@/app/database/zurag";
 import {Image} from "expo-image";
 import { WebView } from 'react-native-webview';
 import { useLocalSearchParams, Link, useRouter } from "expo-router";
@@ -48,21 +49,20 @@ export default function App() {
 
       <Pressable onPress = {()=>  router.navigate('/aimagochih/page')}>
 
-       <Image style={{ width: '100%', aspectRatio: 2 }}
+       <Image   style={styles.aymag}
         source={ require('@/assets/zurag/gazriinzurag1050x510.png')}  
       />
 
        {/* Аймгийн зургууд давхарласан байрлалтай */}
 
-       {aimags.map((item, i) => (
-       
-          <Image
-            source={aimagImages[item.aimags]}   // ⬅ REQUIRE АЛГА БОЛЛОО !!!
-            style={styles.aymag}
-          />
-        
-   
-      ))}
+       {aimags.map((itemaimag, i) => (
+  <Image
+    key={i}                                      // 🔥 LIST-ИЙН KEY
+    source={aimagImages[itemaimag.aimags]}            // зураг Index-ээр авна
+    style={styles.aymag}
+  />
+))}
+
       
 </Pressable>
       <FlatList
@@ -167,7 +167,8 @@ export default function App() {
     alignItems:"center"
   },
   aymag:{
-    width: 60, height: 60, borderRadius: 50
+     width: '100%', aspectRatio: 2 
+
   },
   text:{
     backgroundColor:"rgba(0,0,0,0.4)",
