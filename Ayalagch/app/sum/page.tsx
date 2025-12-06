@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
 import { sumDB, db } from "@/app/database/sum";
+import { Link } from "expo-router";
 
 export default function SumList() {
   const [sums, setSums] = useState<any[]>([]);
@@ -56,10 +57,20 @@ export default function SumList() {
               justifyContent: "space-between",
             }}
           >
-            <Text style={{ fontSize: 16 }}>{item.aname}</Text>
+             <Link
+                    href={{
+                      pathname: "/sumochih/page",
+                      params: { aid: item.aid },
+                    }}
+                   
+                  >
+                    {item.aname}
+                  </Link>
+           
             <Text style={{ fontSize: 16 }}>
               {item.ochsonsum} / {item.niitsum}
             </Text>
+           
           </View>
         )}
       />
