@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet, Modal, Dimensions, 
 import { aimagDB, db } from "@/app/database/aimag";
 import {Image} from "expo-image";
 import { WebView } from 'react-native-webview';
-import { useLocalSearchParams, Link,useRouter } from "expo-router";
+import { useLocalSearchParams, Link, useRouter } from "expo-router";
 
 export default function App() {
 
@@ -17,7 +17,8 @@ export default function App() {
     aimagDB();
     const rows = getAimags();
     setAimags(rows);
-    console.log(aimags);
+    
+
   }, []);
 
 
@@ -30,6 +31,7 @@ export default function App() {
       setModalVisible(true);
       setAimagwiki(wiki);
       setAimagname(aname);
+      console.log(aimags);
     };
 
 
@@ -49,6 +51,19 @@ export default function App() {
        <Image style={{ width: '100%', aspectRatio: 2 }}
         source={ require('@/assets/zurag/gazriinzurag1050x510.png')}  
       />
+
+       {/* Аймгийн зургууд давхарласан байрлалтай */}
+
+       {aimags.map((item, i) => (
+       
+          <Image
+            source={aimagImages[item.aimags]}   // ⬅ REQUIRE АЛГА БОЛЛОО !!!
+            style={styles.aymag}
+          />
+        
+   
+      ))}
+      
 </Pressable>
       <FlatList
         data={aimags}
@@ -144,4 +159,22 @@ export default function App() {
         marginBottom: 15,
         textAlign: 'center',
       },
+
+      imageBox:{
+    position: "absolute", // газрын зураг дээр давхарлана
+    top: Math.random() * 400,   // AI байрлалын жишээ (Хожим точк тавьж болно)
+    left: Math.random() * 250,
+    alignItems:"center"
+  },
+  aymag:{
+    width: 60, height: 60, borderRadius: 50
+  },
+  text:{
+    backgroundColor:"rgba(0,0,0,0.4)",
+    color:"#fff",
+    fontSize:12,
+    paddingHorizontal:5,
+    borderRadius:4,
+    marginTop:2
+  }
     });
