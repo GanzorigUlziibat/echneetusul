@@ -53,15 +53,6 @@ export default function App() {
         source={ require('@/assets/zurag/gazriinzurag1050x510.png')}  
       />
 
-       {/* Аймгийн зургууд давхарласан байрлалтай */}
-
-       {aimags.map((itemaimag, i) => (
-  <Image
-    key={i}                                      // 🔥 LIST-ИЙН KEY
-    source={aimagImages[itemaimag.aimags]}            // зураг Index-ээр авна
-    style={styles.aymag}
-  />
-))}
 
       
 </Pressable>
