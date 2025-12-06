@@ -8,7 +8,7 @@ import {
   StyleSheet,
   Pressable,
 } from "react-native";
-import { useLocalSearchParams, Link } from "expo-router";
+import { useLocalSearchParams, Link,router } from "expo-router";
 import Checkbox from "expo-checkbox"; //expo install expo-checkbox
 import { Ionicons } from "@expo/vector-icons";
 
@@ -20,15 +20,46 @@ export default function aList() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    aimagDB(); // хүснэгт үүсгэж өгөгдөл нэмэх
+    // aimagDB(); // хүснэгт үүсгэж өгөгдөл нэмэх
     const rows = getaimag(); // SQLite → бүх сумыг унших
+    
     setAimag(rows);
+
+
+
+  loadChecked();
+
+
     
   }, []);
 
   const getaimag = () => {
     return db.getAllSync(`SELECT * FROM aimag`);
   };
+       
+  
+const loadChecked = () => {
+  try {
+    const res = db.getAllSync("SELECT aid, agone FROM aimag");
+    // getAllSync => шууд rows array
+    console.log('load check');
+    console.log('res = ', res);
+
+    const rows = res || [];  // энд res нь массив
+
+    const initialState: { [key: number]: boolean } = {};
+
+    rows.forEach((row: any) => {
+      initialState[row.aid] = row.agone === 1;
+    });
+
+    setChecked(initialState);
+  } catch (e) {
+    console.log('load error', e);
+  }
+};
+
+
   const toggleCheck = (aid: number) => {
     setChecked((prev) => ({ ...prev, [aid]: !prev[aid] }));
     console.log(checked);
@@ -45,6 +76,7 @@ export default function aList() {
       );
       }
       console.log("Updated successfully");
+
     } catch (error) {
       console.log("Update error: ", error);
     }
@@ -52,7 +84,7 @@ export default function aList() {
   return (
     <View style={styles.container}>
 
-      <Pressable style={styles.saveIconButton} onPress={handleSave}>
+      <Pressable style={styles.saveIconButton} onPress={()=>{handleSave(); router.back()}}>
 
         <Ionicons name="save" size={22} color="#fff" />
       </Pressable>
@@ -78,11 +110,10 @@ export default function aList() {
               style={[
                 styles.checkbox,
                 checked[item.aid] && styles.checkboxChecked,
-
               ]}
               onPress={() => toggleCheck(item.aid)}
             >
-              {item.agone == 1 && <Text style={styles.checkboxTick}>✓</Text>}
+              {checked[item.aid] && <Text style={styles.checkboxTick}>✓</Text>}
             </Pressable>
           </View>
         )}
@@ -130,7 +161,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#4b5563",
   },
   checkboxTick: {
-    color: "#000",
+    color: "#fff",
     fontWeight: "bold",
   },
   saveIconButton: {
