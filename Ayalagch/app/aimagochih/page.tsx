@@ -8,7 +8,7 @@ import {
   StyleSheet,
   Pressable,
 } from "react-native";
-import { useLocalSearchParams, Link,router } from "expo-router";
+import { useLocalSearchParams, Link, router } from "expo-router";
 import Checkbox from "expo-checkbox"; //expo install expo-checkbox
 import { Ionicons } from "@expo/vector-icons";
 
@@ -22,70 +22,66 @@ export default function aList() {
   useEffect(() => {
     // aimagDB(); // хүснэгт үүсгэж өгөгдөл нэмэх
     const rows = getaimag(); // SQLite → бүх сумыг унших
-    
+
     setAimag(rows);
 
-
-
-  loadChecked();
-
-
-    
+    loadChecked();
   }, []);
 
   const getaimag = () => {
     return db.getAllSync(`SELECT * FROM aimag`);
   };
-       
-  
-const loadChecked = () => {
-  try {
-    const res = db.getAllSync("SELECT aid, agone FROM aimag");
-    // getAllSync => шууд rows array
-    console.log('load check');
-    console.log('res = ', res);
 
-    const rows = res || [];  // энд res нь массив
+  const loadChecked = () => {
+    try {
+      const res = db.getAllSync("SELECT aid, agone FROM aimag");
+      // getAllSync => шууд rows array
+      console.log("load check");
+      console.log("res = ", res);
 
-    const initialState: { [key: number]: boolean } = {};
+      const rows = res || []; // энд res нь массив
 
-    rows.forEach((row: any) => {
-      initialState[row.aid] = row.agone === 1;
-    });
+      const initialState: { [key: number]: boolean } = {};
 
-    setChecked(initialState);
-  } catch (e) {
-    console.log('load error', e);
-  }
-};
+      rows.forEach((row: any) => {
+        initialState[row.aid] = row.agone === 1;
+      });
 
+      setChecked(initialState);
+    } catch (e) {
+      console.log("load error", e);
+    }
+  };
 
   const toggleCheck = (aid: number) => {
     setChecked((prev) => ({ ...prev, [aid]: !prev[aid] }));
     console.log(checked);
   };
-   const handleSave = async () => {
+  const handleSave = async () => {
     console.log("handla save");
     console.log(aimag);
     try {
       for (const aid in checked) {
         const agone = checked[aid] ? 1 : 0;
-        await db.runAsync(
-        "UPDATE aimag SET agone = ? WHERE aid = ?",
-        [agone, aid]
-      );
+        await db.runAsync("UPDATE aimag SET agone = ? WHERE aid = ?", [
+          agone,
+          aid,
+        ]);
       }
       console.log("Updated successfully");
-
     } catch (error) {
       console.log("Update error: ", error);
     }
   };
   return (
     <View style={styles.container}>
-
-      <Pressable style={styles.saveIconButton} onPress={()=>{handleSave();  router.replace('/aimag/page')}}>
-
+      <Pressable
+        style={styles.saveIconButton}
+        onPress={() => {
+          handleSave();
+          router.replace("/aimag/page");
+        }}
+      >
         <Ionicons name="save" size={22} color="#fff" />
       </Pressable>
       <TextInput
@@ -100,7 +96,10 @@ const loadChecked = () => {
         keyExtractor={(item) => item.aid.toString()}
         contentContainerStyle={{ paddingTop: 10 }}
         renderItem={({ item }) => (
-          <View style={styles.itemRow}>
+          <Pressable
+            style={styles.itemRow}
+            onPress={() => toggleCheck(item.aid)}
+          >
             <View style={{ flex: 1 }}>
               <Text style={styles.itemTitle}>{item.aname}</Text>
               <Text>Аймаг ID: {item.aid}</Text>
@@ -115,7 +114,7 @@ const loadChecked = () => {
             >
               {checked[item.aid] && <Text style={styles.checkboxTick}>✓</Text>}
             </Pressable>
-          </View>
+          </Pressable>
         )}
       />
     </View>
